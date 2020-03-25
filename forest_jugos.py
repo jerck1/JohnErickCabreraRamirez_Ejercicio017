@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[14]:
 
 
 import numpy as np
@@ -13,7 +13,7 @@ import sklearn.metrics # para calcular el f1-score
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[2]:
+# In[18]:
 
 
 # Carga datos
@@ -37,9 +37,11 @@ predictors = list(data.keys())
 predictors.remove('Target')
 predictors.remove('Unnamed: 0')
 print(predictors, np.shape(np.array(predictors)))
+print(np.shape(data[predictors]))
+print(np.shape(data['Target']))
 
 
-# In[3]:
+# In[19]:
 
 
 X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(
@@ -69,10 +71,17 @@ for i, n_tree in enumerate(n_trees):
     feature_importance[i, :] = clf.feature_importances_
 
 
-# In[6]:
+# In[10]:
 
 
 plt.scatter(n_trees, f1_test)
+plt.xlabel("n_trees")
+
+
+# In[12]:
+
+
+np.shape(feature_importance)
 
 
 # In[7]:
@@ -84,6 +93,18 @@ a = pd.Series(avg_importance, index=predictors)
 print(a)
 a.nlargest().plot(kind='barh')
 plt.xlabel('Average Feature Importance')
+
+
+# In[20]:
+
+
+n_trees
+
+
+# In[21]:
+
+
+np.shape(data)
 
 
 # In[ ]:
